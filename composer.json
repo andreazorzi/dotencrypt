@@ -1,0 +1,17 @@
+{
+    "name": "andreazorzi/dotencrypt",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dotencrypt\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andrea Zorzi",
+            "email": "info@zorziandrea.com"
+        }
+    ],
+    "require": {}
+}
