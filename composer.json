@@ -1,5 +1,6 @@
 {
     "name": "andreazorzi/dotencrypt",
+    "version": "1.0.0",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -13,5 +14,19 @@
             "email": "info@zorziandrea.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8.0",
+        "illuminate/console": "^11.34",
+        "spatie/laravel-package-tools": "^1.92"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dotencrypt\\DotencryptServiceProvider"
+            ],
+            "aliases": {
+                "Dotencrypt": "Dotencrypt\\Facades\\Dotencrypt"
+            }
+        }
+    }
 }
