@@ -9,9 +9,10 @@ use Dotencrypt\Helper\IO;
 class Encrypt extends Command
 {
     protected $signature = 'dotencrypt:encrypt {files?*}';
-    protected $description = 'This command will create a laravel model';
+    protected $description = 'This command will encrypt your env files';
     
     private $env_files = [".env", ".env.production"];
+    private $path = 'storage/env';
     
     public function __construct()
     {
@@ -20,26 +21,29 @@ class Encrypt extends Command
     
     public function handle()
     {
-        $files = $this->argument('files') ?: $this->env_files;
-        
         do{
             $key = $this->secret('Enter encryption key');
         } while (empty($key));
         
+        $files = $this->argument('files') ?: $this->env_files;
+        
         foreach ($files as $file) {
             if(!file_exists($file)) continue;
             
-            $content = file_get_contents($file);
+            $content = IO::readFile($file);
             $hash = hash('sha256', $content);
             
             $encrypted = Encryptor::encrypt($content, $key);
             
-            IO::writeFile("storage/env/$file.encrypted", json_encode([
+            IO::writeFile($this->path."/$file.encrypted", json_encode([
                 'hash' => $hash,
                 'content' => $encrypted
             ]));
+            
+            $this->line("Encrypting $file: <fg=green>encrypted!</>");
         }
         
-        $this->info('Files encrypted successfully!');
+        $this->newLine();
+        $this->info('Encryption finished!');
     }
 }

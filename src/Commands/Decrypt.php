@@ -9,7 +9,7 @@ use Dotencrypt\Helper\IO;
 class Decrypt extends Command
 {
     protected $signature = 'dotencrypt:decrypt {files?*}';
-    protected $description = 'This command will create a laravel model';
+    protected $description = 'This command will decrypt the env files';
     
     private $path = 'storage/env';
     
