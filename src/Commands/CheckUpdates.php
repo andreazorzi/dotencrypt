@@ -46,15 +46,21 @@ class CheckUpdates extends Command
         
         $this->newLine();
         if(!empty($encrypted_out_of_dates)){
-            $this->warn("Encrypted files out of date: ".implode(', ', $encrypted_out_of_dates));
-            $this->warn("Run 'php artisan dotencrypt:encrypt' command to fix this issue");
+            $this->warn("<fg=yellow;options=underscore,bold>Encrypted files out of date:</>");
+            foreach($encrypted_out_of_dates as $file){
+                $this->warn("   - $file");
+            }
+            $this->warn("Run '<fg=yellow;options=bold>php artisan dotencrypt:encrypt</>' command to fix this issue");
             $this->newLine();
             $this->newLine();
         }
         
         if(!empty($local_out_of_dates)){
-            $this->warn("Local files out of date: ".implode(', ', $local_out_of_dates)."");
-            $this->warn("Run 'php artisan dotencrypt:decrypt' command to fix this issue");
+            $this->warn("<fg=yellow;options=underscore,bold>Local files out of date:</>");
+            foreach($local_out_of_dates as $file){
+                $this->warn("   - $file");
+            }
+            $this->warn("Run '<fg=yellow;options=bold>php artisan dotencrypt:decrypt</>' command to fix this issue");
             $this->newLine();
             $this->newLine();
         }
