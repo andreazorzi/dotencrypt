@@ -1,6 +1,16 @@
 {
     "name": "andreazorzi/dotencrypt",
     "version": "1.0.0",
+    "description": "A Laravel multi-env encryptor for secure team sharing.",
+    "keywords": [
+        "Andrea Zorzi",
+        "php",
+        "laravel",
+        "env",
+        "encryption",
+        "decryption"
+    ],
+    "homepage": "https://github.com/andreazorzi/dotencrypt",
     "type": "library",
     "license": "MIT",
     "autoload": {
