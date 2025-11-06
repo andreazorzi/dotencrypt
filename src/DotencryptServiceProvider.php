@@ -4,6 +4,7 @@ namespace Dotencrypt;
 
 use Dotencrypt\Commands\Decrypt;
 use Dotencrypt\Commands\Encrypt;
+use Dotencrypt\Commands\CheckUpdates;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -20,7 +21,8 @@ class DotencryptServiceProvider extends PackageServiceProvider
             ->name('dotencrypt')
             ->hasCommands([
                 Encrypt::class,
-                Decrypt::class
+                Decrypt::class,
+                CheckUpdates::class
             ]);
     }
     

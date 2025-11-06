@@ -31,7 +31,7 @@ class Decrypt extends Command
             
             echo "Decrypting $file: ";
             
-            $content = json_decode(IO::readFile($this->path."/$file.encrypted"), true);
+            $content = IO::readFile($this->path."/$file.encrypted", true);
             
             $decrypted = Encryptor::decrypt($content['content'], $key);
             

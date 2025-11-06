@@ -10,8 +10,16 @@ class IO
         return file_put_contents($path, $content) !== false;
     }
     
-    public static function readFile(string $path): string{
-        return file_get_contents($path);
+    public static function readFile(string $path, bool $json = false): string|array|null{
+        if(!file_exists($path)) return null;
+        
+        $content = file_get_contents($path);
+        
+        if($json){
+            $content = json_decode($content, true);
+        }
+        
+        return $content;
     }
     
     public static function getFiles(string $path): array{
@@ -22,5 +30,9 @@ class IO
         }
         
         return $files;
+    }
+    
+    public static function getLastModDate(string $path): int{
+        return filemtime($path);
     }
 }

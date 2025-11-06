@@ -37,6 +37,7 @@ class Encrypt extends Command
             
             IO::writeFile($this->path."/$file.encrypted", json_encode([
                 'hash' => $hash,
+                'time' => time(),
                 'content' => $encrypted
             ]));
             
