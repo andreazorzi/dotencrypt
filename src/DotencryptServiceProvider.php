@@ -19,6 +19,7 @@ class DotencryptServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('dotencrypt')
+            ->hasConfigFile('dotencrypt')
             ->hasCommands([
                 Encrypt::class,
                 Decrypt::class,

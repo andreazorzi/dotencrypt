@@ -11,7 +11,6 @@ class Encrypt extends Command
     protected $signature = 'dotencrypt:encrypt {files?*}';
     protected $description = 'This command will encrypt your env files';
     
-    private $env_files = [".env", ".env.production"];
     private $path = 'storage/env';
     
     public function __construct()
@@ -25,7 +24,9 @@ class Encrypt extends Command
             $key = $this->secret('Enter encryption key');
         } while (empty($key));
         
-        $files = $this->argument('files') ?: $this->env_files;
+        $files = $this->argument('files') ?: config("dotencrypt.env_files");
+        
+        dd($files);
         
         foreach ($files as $file) {
             if(!file_exists($file)) continue;
