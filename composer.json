@@ -1,6 +1,6 @@
 {
     "name": "andreazorzi/dotencrypt",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A Laravel multi-env encryptor for secure team sharing.",
     "keywords": [
         "Andrea Zorzi",
