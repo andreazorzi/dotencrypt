@@ -35,4 +35,8 @@ class IO
     public static function getLastModDate(string $path): int{
         return filemtime($path);
     }
+    
+    public static function directoryExists(string $path): bool{
+        return is_dir($path);
+    }
 }

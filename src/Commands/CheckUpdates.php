@@ -3,7 +3,6 @@
 namespace Dotencrypt\Commands;
 
 use Illuminate\Console\Command;
-use Dotencrypt\Helper\Encryptor;
 use Dotencrypt\Helper\IO;
 
 class CheckUpdates extends Command
@@ -20,6 +19,11 @@ class CheckUpdates extends Command
     
     public function handle()
     {
+        if(!IO::directoryExists($this->path)){
+            $this->warn("<fg=yellow;options=underscore,bold>Directory $this->path not found!</>");
+            return;
+        }
+        
         $files = IO::getFiles($this->path);
         
         $local_out_of_dates = [];
