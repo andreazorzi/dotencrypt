@@ -66,7 +66,7 @@ class CheckUpdates extends Command
         }
         
         if(empty($encrypted_out_of_dates) && empty($local_out_of_dates)){
-            $this->info("All files are up to date!");
+            $this->info("All .env files are up to date!");
             $this->newLine();
             $this->newLine();
         }
