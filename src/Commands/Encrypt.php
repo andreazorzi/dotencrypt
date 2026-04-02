@@ -26,8 +26,6 @@ class Encrypt extends Command
         
         $files = $this->argument('files') ?: config("dotencrypt.env_files");
         
-        dd($files);
-        
         foreach ($files as $file) {
             if(!file_exists($file)) continue;
             
