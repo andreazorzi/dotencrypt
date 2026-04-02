@@ -3,6 +3,9 @@
 namespace Dotencrypt\Helper;
 
 use Exception;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Validator;
 
 class Encryptor
 {
@@ -40,5 +43,13 @@ class Encryptor
         }
         
         return $decrypted;
+    }
+    
+    public static function isStrongPassword(string $password): bool{
+        $validator = Validator::make(['password' => $password], [
+            'password' => ['required', Config::get('dotencrypt.strong_password') ? Password::min(8)->letters()->mixedCase()->numbers()->symbols() : Password::min(8)],
+        ]);
+        
+        return !$validator->fails();
     }
 }

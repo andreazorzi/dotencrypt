@@ -2,9 +2,10 @@
 
 namespace Dotencrypt\Commands;
 
-use Illuminate\Console\Command;
 use Dotencrypt\Helper\Encryptor;
 use Dotencrypt\Helper\IO;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Config;
 
 class Encrypt extends Command
 {
@@ -21,10 +22,16 @@ class Encrypt extends Command
     public function handle()
     {
         do{
-            $key = $this->secret('Enter encryption key');
-        } while (empty($key));
+            $key = $this->secret('Enter encryption key ('.(Config::get('dotencrypt.strong_password') ? 'min 8 chars, mixed case, numbers, symbols' : 'min 8 chars').')');
+            
+            $is_stong_enough = Encryptor::isStrongPassword($key);
+            
+            if (!$is_stong_enough) {
+                $this->warn("<fg=yellow;options=underscore,bold>Password is not strong enough!</>");
+            }
+        } while (empty($key) || !$is_stong_enough);
         
-        $files = $this->argument('files') ?: config("dotencrypt.env_files");
+        $files = $this->argument('files') ?: Config::get("dotencrypt.env_files");
         
         foreach ($files as $file) {
             if(!file_exists($file)) continue;
